@@ -106,7 +106,7 @@ Template.searchInput.searchInvitation = ->
   if Session.get 'currentSearchQuery'
     Session.get 'currentSearchQuery'
   else
-    "Search academic publications and people"
+    "Welcome to Apollo"
 
 Template.searchInput.development = Template.header.development
 

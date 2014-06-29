@@ -1,1 +1,1 @@
-@SITENAME = Meteor.settings?.public?.siteName or 'PeerLibrary'
+@SITENAME = Meteor.settings?.public?.siteName or 'Apollo'

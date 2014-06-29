@@ -42,7 +42,8 @@
       "isolate-value": {},
       "stacktrace": {},
       "related": {},
-      "kadira": {}
+      "kadira": {},
+      "font-awesome": {}
     },
     "packages": {
       "router": {
@@ -167,8 +168,13 @@
       },
       "kadira": {
         "git": "https://github.com/meteorhacks/kadira.git",
-        "tag": "v2.2.0",
-        "commit": "0f0f6b90a80f2be3980154977fe19f84cc535cf8"
+        "tag": "v2.4.5",
+        "commit": "fa9a6446f6efb576953f99c01c03474f56f3852e"
+      },
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

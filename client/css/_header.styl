@@ -24,7 +24,7 @@ header
     text-decoration none
     line-height 45px
     font-size 22px
-    font-family "Fira Sans", sans-serif
+    font-family "Source Sans Pro", sans-serif
     background transparent
     display inline-block
     padding 0 20px
@@ -328,20 +328,22 @@ input.import-file-input
 
 header.index-header
   .search-wrapper
+    size = 213px
+    pad = 10px
     position fixed
     display block
     height 15px
-    top 50%
+    top 60%
     left 50%
-    width 620px
-    margin-left -323px
+    width size
+    margin-left (-1/2)*size - pad
     visibility visible
     background transparent
-    color #444
+    color #fff
     border-width 0 2px 2px 2px
     border-style solid
-    border-color rgba(20,20,20,0.8)
-    padding 0 10px
+    border-color rgba(256,256,256,0.8)
+    padding 0 pad
 
     .label
       display none
@@ -362,11 +364,11 @@ header.index-header
 
       input::-webkit-input-placeholder
           font-family "Fira Sans", sans-serif
-          color rgba(20,20,20,0.8)
+          color rgba(256,256,256,0.6)
 
       input::-moz-placeholder
           font-family "Fira Sans", sans-serif
-          color rgba(20,20,20,0.8)
+          color rgba(256,256,256,0.6)
 
   .search-wrapper:hover
     background transparent

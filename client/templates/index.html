@@ -3,7 +3,7 @@
     {{> results}}
   {{else}}
     {{> indexMain}}
-    {{> indexStatistics}}
+    {{! indexStatistics}}
   {{/if}}
 </template>
 
@@ -11,27 +11,19 @@
   <ul class="statistics">
     <li>
       <span class="value">{{publications}}</span>
-      <span class="label">Publications</span>
+      <span class="label">Texts</span>
     </li>
     <li>
       <span class="value">{{persons}}</span>
-      <span class="label">People</span>
+      <span class="label">Contributors</span>
     </li>
     <li>
       <span class="value">{{highlights}}</span>
-      <span class="label">Highlights</span>
+      <span class="label">Entities</span>
     </li>
     <li>
       <span class="value">{{annotations}}</span>
-      <span class="label">Annotations</span>
-    </li>
-    <li>
-      <span class="value">{{groups}}</span>
-      <span class="label">Groups</span>
-    </li>
-    <li>
-      <span class="value">{{collections}}</span>
-      <span class="label">Collections</span>
+      <span class="label">Properties</span>
     </li>
   </ul>
 </template>
@@ -39,8 +31,7 @@
 <template name="indexMain">
   {{#constant}}
     <div class="landing">
-      <div class="big-logo">
-        <h1>PeerLibrary</h1>
+      <div class="big-logo" alt="Apollo">
       </div>
     </div>
   {{/constant}}

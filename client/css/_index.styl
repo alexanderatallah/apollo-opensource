@@ -8,18 +8,18 @@
     z-index -1 
 
 .big-logo
+  size = 256px
   position fixed 
-  width 300px
-  height auto
+  width size
+  height size
   top 145px
   left 50%
-  margin-left -161px
+  margin-left (-1/2)*size
   text-align center
-  padding 10px
-  background transparent
   cursor default
-  //border 2px solid rgba(20,20,20,0.8)
-  //border-radius 10px
+  background-image url('/img/logo.png')
+  background-repeat no-repeat
+  background-size 256px 256px
 
   h1
     font-family "Fira Sans", sans-serif
@@ -30,6 +30,7 @@
     user-select none
 
 .statistics
+  stats_width = 486px
   width auto
   height: auto
   margin 0
@@ -37,8 +38,9 @@
   position fixed
   bottom 0
   left 50%
-  margin-left -363px
+  margin-left (-1/2)*stats_width
   list-style none
+  opacity 0.4
 
   li
     display inline-block
