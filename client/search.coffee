@@ -18,6 +18,9 @@
   Session.set 'currentSearchQuery', newQuery
   Session.set 'currentSearchLimit', INITIAL_SEARCH_LIMIT
 
+  if newQuery.toLowerCase().indexOf("where") > -1
+    $("#filtersBar").slideDown()
+
 @structuredQueryChange = (newQuery) ->
   oldQuery = Session.get 'currentSearchQuery'
   if "#{ oldQuery }" is "#{ newQuery.general }" # Make sure we compare primitive strings

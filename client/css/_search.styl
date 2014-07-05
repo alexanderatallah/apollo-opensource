@@ -1,0 +1,39 @@
+@import 'variables.import'
+
+section.filters
+  display none
+  background gray-dark
+  height filters-height
+  overflow hidden
+  border-bottom-left-radius border-radius-large
+  border-bottom-right-radius border-radius-large
+  box-shadow inset 0 0px 10px rgba(0, 0, 0, 0.7)
+
+  form#advanced-search
+    color white
+    display table-row
+
+    .filter
+      display: table-cell
+      height: filters-height
+      padding: 15px 20px 15px 30px
+      position: relative
+      border-right: 1px solid rgba(0, 0, 0, 0.40)
+      &:last-of-type 
+        border-right: none
+
+      // Relatively positioned elements aren't clipped
+      &:first-of-type 
+        border-top-left-radius: 5px
+        border-bottom-left-radius: 5px
+
+      box-shadow: 10px 0px 45px rgba(0, 0, 0, 0.7)
+      background-color: #444449
+      &::after
+        content: ""
+        width = 10px
+        height = filters-height
+        arrow-right(width, height)
+        position: absolute
+        right: -1*width
+        top: 0px

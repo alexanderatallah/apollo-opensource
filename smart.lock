@@ -6,6 +6,12 @@
   },
   "dependencies": {
     "basePackages": {
+      "coffeescript": {
+        "path": "../../../../Code/git/meteor/packages/coffeescript"
+      },
+      "stylus": {
+        "path": "../../../../Code/git/meteor/packages/stylus"
+      },
       "router": {
         "git": "https://github.com/peerlibrary/meteor-router.git",
         "branch": "peerlibrary"
@@ -46,6 +52,12 @@
       "font-awesome": {}
     },
     "packages": {
+      "coffeescript": {
+        "path": "../../../../Code/git/meteor/packages/coffeescript"
+      },
+      "stylus": {
+        "path": "../../../../Code/git/meteor/packages/stylus"
+      },
       "router": {
         "git": "https://github.com/peerlibrary/meteor-router.git",
         "branch": "peerlibrary",
@@ -123,8 +135,8 @@
       },
       "peerdb": {
         "git": "https://github.com/peerlibrary/meteor-peerdb.git",
-        "tag": "v0.9.0",
-        "commit": "2e254ecd7cf98ee0b47e370170b00ca9e61009f9"
+        "tag": "v0.9.1",
+        "commit": "d5ead8496ef19d4549631de19a0f60dadd44745e"
       },
       "useragent": {
         "git": "https://github.com/awwx/meteor-useragent.git",
@@ -168,8 +180,8 @@
       },
       "kadira": {
         "git": "https://github.com/meteorhacks/kadira.git",
-        "tag": "v2.4.5",
-        "commit": "fa9a6446f6efb576953f99c01c03474f56f3852e"
+        "tag": "v2.4.7",
+        "commit": "c860e10cbe416ebb3d4999adccd5c486f232f9c6"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",

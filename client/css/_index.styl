@@ -7,6 +7,43 @@
     position absolute
     z-index -1 
 
+  .bg-overlay
+    background-color: #222
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: -1
+
+    // &::before, &::after
+    //   content: ''
+    //   background-image url('/img/bg-overlay.png')
+    //   background-repeat repeat
+    //   opacity: 0.5
+    //   -webkit-transform: translate3d(0, 0, 0)
+    //   position: absolute
+    //   top: 0
+    //   bottom: 0
+    //   left: 0
+    //   right: 0
+
+    // &::before
+    //   -webkit-animation: follow 50s linear infinite
+
+    // &::after
+    //   -webkit-animation: travel 50s linear infinite
+
+.small-logo
+  size = 15px
+  display inline-block
+  width size
+  height size
+  background-image url('/img/logo-white.png')
+  background-repeat no-repeat
+  background-size cover
+  margin 0 5px
+
 .big-logo
   size = 256px
   position fixed 
@@ -19,7 +56,8 @@
   cursor default
   background-image url('/img/logo.png')
   background-repeat no-repeat
-  background-size 256px 256px
+  background-size cover
+  -webkit-animation: fade 2s linear
 
   h1
     font-family "Fira Sans", sans-serif
@@ -66,3 +104,24 @@
     
   li:last-child
     border 0
+
+@-webkit-keyframes fade
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
+@-webkit-keyframes travel
+  0%
+    -webkit-transform: translateY(0)
+
+  100%
+    -webkit-transform: translateY(100%)
+
+@-webkit-keyframes follow
+  0%
+    -webkit-transform: translateY(-100%)
+
+  100%
+    -webkit-transform: translateY(0)

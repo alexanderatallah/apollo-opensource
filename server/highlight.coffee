@@ -105,3 +105,8 @@ Meteor.publish 'highlights-by-publication', (publicationId) ->
       _id: publicationId
     ,
       fields: Publication.readAccessSelfFields()
+
+# TODO: remove, Alex's temporary search
+Meteor.publish 'highlights', ->
+  Highlight.documents.find {},
+    Highlight.PUBLISH_FIELDS()

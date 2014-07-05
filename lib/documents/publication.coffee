@@ -101,6 +101,9 @@ class @Publication extends ReadAccessDocument
   thumbnailUrls: =>
     @thumbnailUrl page for page in [1..@numberOfPages]
 
+  firstThumbnailUrl: =>
+    @thumbnailUrl 1
+
   createdDay: =>
     moment(@createdAt).format 'MMMM Do YYYY'
 

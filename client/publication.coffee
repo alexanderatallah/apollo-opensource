@@ -276,7 +276,7 @@ class @Publication extends Publication
     return # Make sure CoffeeScript does not return anything
 
   destroy: =>
-    Notify.debug "Destroying publication #{ @_id }"
+    Notify.debug "Destroying text #{ @_id }"
 
     currentPublication = null
 

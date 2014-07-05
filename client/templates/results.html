@@ -1,9 +1,11 @@
 <template name="results">
-  <div class="row">
+  <div class="results row">
     <div class="results-list col12">
       {{> resultsCount}}
       {{> resultsSearchInvitation}}
-      {{> noResults}}
+      {{#if noResults}}
+        {{> noResults}}
+      {{/if}}
       {{#if publications}}
         <ol class="item-list">
           {{#each publications}}
@@ -11,15 +13,15 @@
           {{/each}}
         </ol>
       {{/if}}
-      {{> resultsLoad}}
+      {{! resultsLoad}}
     </div>
-    {{> sidebarSearch}}
+    {{> resultsEntities}}
   </div>
 </template>
 
 <template name="resultsCount">
   {{#if publications}}
-    <div class="results-count">Found {{publications}} publications:</div>
+    <div class="results-count">Found {{publications}} texts:</div>
   {{/if}}
   {{#if persons}}
     <div class="results-count">Found {{persons}} people:</div>
@@ -27,9 +29,7 @@
 </template>
 
 <template name="noResults">
-  {{#if noResults}}
-    <div class="no-results">No publications or people found.</div>
-  {{/if}}
+  <div class="no-results">No results</div>
 </template>
 
 <template name="resultsLoad">
@@ -52,61 +52,24 @@
   {{/if}}
 </template>
 
-<template name="sidebarSearch">
+<template name="resultsEntities">
   <div class="col4 push12 sidebar sidebar-search">
-    <h2>Search</h2>
-    <form id="sidebar-search">
-      <span class="filter">
-        <input type="text" id="general" />
-      </span>
-      {{! TODO: Remove under-development div and hint when implemented }}
-      <div class="under-development">
-        <p class="hint">Advanced search options coming soon.</p>
-        <span class="filter">
-          <label for="title">Title contains</label>
-          <input type="text" id="title" disabled="disabled" />
-        </span>
-        <span class="filter">
-          <label for="author">Author(s)</label>
-          {{! TODO: For now disabled }}
-          <input type="text" id="author" disabled="disabled" />
-        </span>
-        <span class="filter">
-          <label for="abstract">Abstract contains</label>
-          {{! TODO: For now disabled }}
-          <input type="text" id="abstract" disabled="disabled" />
-        </span>
-        <span class="filter">
-          <label for="full-text">Full-text contains</label>
-          {{! TODO: For now disabled }}
-          <input type="text" id="full-text" disabled="disabled" />
-        </span>
-        <span class="filter">
-          <label for="tags">Tags</label>
-          {{! TODO: For now disabled }}
-          <select type="text" id="tags" data-placeholder="Select tag(s)" multiple="multiple" class="chzn" disabled="disabled">
-            <option value=""></option>
-            <option>Computer Science</option>
-            <option>Biology</option>
-            <option>Physics</option>
-            <option>Chemistry</option>
-            <option>Philosophy</option>
-            <option>Mathematics</option>
-            <option>Political Science</option>
-            <option>Big Data</option>
-            <option>HTML5 Nanotechnology</option>
-            <option>Bitcoin Casino</option>
-            <option>Robot Circus</option>
-          </select>
-        </span>
-        <span class="filter">
-          <label for="publication-date" class="label-slider">Publication year</label>
-          <input type="text" id="publication-date" disabled="disabled" />
-          <div class="clearfix"></div>
-          <div id="date-range"></div>
-        </span>
+    <h2>Entities</h2>
+    <div class="row">
+      <div class="results-list">
+        {{#if noResults}}
+          {{> noResults}}
+        {{/if}}
+        {{#if entities}}
+          <ol class="item-list">
+            {{#each entities}}
+              {{> entitySearchResult}}
+            {{/each}}
+          </ol>
+        {{/if}}
+        {{! resultsLoad}}
       </div>
-    </form>
+    </div>
     {{> footer}}
   </div>
 </template>
@@ -146,9 +109,9 @@
       {{#if thumbnailUrls.length}}
         <div class="article-thumbnail">
           <ul class="scrubber">
-            {{#each thumbnailUrls}}
+            {{#with firstThumbnailUrl}}
               {{> publicationSearchResultThumbnail}}
-            {{/each}}
+            {{/with}}
           </ul>
         </div>
       {{/if}}
@@ -159,6 +122,12 @@
         </div>
       {{/if}}
     </div>
+  </li>
+</template>
+
+<template name="entitySearchResult">
+  <li class="result-item small" data-entity-id="{{_id}}">
+    <p>{{quote}}</p>
   </li>
 </template>
 

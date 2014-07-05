@@ -4,7 +4,9 @@
 ========= */
 
 blue = #338ed5
-blue-accent = #2270ab
+blue-accent = #84c9ff // #2270ab
+green = #99ff9b
+green-accent = #e5ffe5
 white-translucent = rgba(240,240,240,0.6)
 overlay-translucent = rgba(46,46,44,0.5)
 
@@ -26,7 +28,7 @@ brand-danger =  #d9534f
 */
 
 selection-color = rgba(0,90,160,0.2)
-highlight-color = rgba(240,200,0,0.2)
+highlight-color = rgba(153,255,155,0.4)  // rgba(240,200,0,0.2)
 
 /* Style used in pdf-text-highlight.coffee as well, keep it in sync */
 /* TODO: Refactor these styles for better semantics */
@@ -50,9 +52,23 @@ hover-blue = #327cab
 ======== */
 
 header-height = 45px
+filters-height = 83px
 simple-margin-top = 75px
 
 display-page-loading-width = 400px
 display-page-loading-height = 400px
 
 default-line-height = 1.2
+
+border-radius-base = 3px
+border-radius-large = 4px
+border-radius-small = 2px
+
+/* Mixins
+========= */
+arrow-right(width = 10px, height = 58px)
+  width: 0
+  height: 0
+  border-top: (1/2)*height solid transparent
+  border-bottom: (1/2)*height solid transparent
+  border-left: width solid #444449

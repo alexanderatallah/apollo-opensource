@@ -26,6 +26,8 @@ Deps.autorun ->
       onError: ->
         # TODO: Should we display some error?
         Session.set 'currentSearchQueryLoading', false
+    # TODO: replace with Entity search results, Alex's temp
+    Meteor.subscribe 'highlights'
   else
     Session.set 'currentSearchQueryLoading', false
 
@@ -83,8 +85,30 @@ Template.resultsCount.publications = ->
 Template.resultsCount.persons = ->
   Session.get 'currentSearchQueryCountPersons'
 
-Template.noResults.noResults = ->
+Template.results.noResults = ->
   Session.get('currentSearchQueryReady') and not currentSearchQueryCount()
+
+Template.resultsEntities.entities = ->
+  # TODO: not Session.get('currentSearchLimit') or ...
+  if not Session.get('currentSearchQuery')
+    return
+
+  # searchResult = SearchResult.documents.findOne
+  #   name: 'search-entities'
+  #   query: Session.get 'currentSearchQuery'
+
+  # return if not searchResult
+
+  # Session.set 'currentSearchQueryCountEntities', searchResult.countHighlights
+
+  # TODO: Alex, use real fulltext search
+  Highlight.documents.find
+    quote: new RegExp Session.get('currentSearchQuery'), 'i'
+    # limit: Session.get 'currentSearchLimit'
+
+Template.resultsEntities.noResults = Template.results.noResults
+  # ->
+  # Session.get('currentSearchQueryReady') and Session.get('currentSearchQueryCountEntities') == 0
 
 Template.resultsLoad.loading = ->
   Session.get('currentSearchQueryLoading')
@@ -136,11 +160,11 @@ Template.publicationSearchResultThumbnail.events
     publication = @publication
     Meteor.Router.toNew Meteor.Router.publicationPath publication._id, publication.slug
 
-Template.sidebarSearch.created = ->
+Template.interpretedSearch.created = ->
   @_searchQueryHandle = null
   @_dateRangeHandle = null
 
-Template.sidebarSearch.rendered = ->
+Template.interpretedSearch.rendered = ->
   @_searchQueryHandle?.stop()
   @_searchQueryHandle = Deps.autorun =>
     # Sync input field unless change happened because of this input field itself
@@ -186,40 +210,40 @@ Template.sidebarSearch.rendered = ->
   $(@findAll '.chzn').chosen
     no_results_text: "No tag match"
 
-Template.sidebarSearch.destroyed = ->
+Template.interpretedSearch.destroyed = ->
   @_searchQueryHandle?.stop()
   @_searchQueryHandle = null
   @_dateRangeHandle?.stop()
   @_dateRangeHandle = null
 
-sidebarIntoQuery = (template) ->
+interpretedIntoQuery = (template) ->
   # TODO: Add other fields as well
   general: $(template.findAll '#general').val()
 
-Template.sidebarSearch.events =
+Template.interpretedSearch.events =
   'blur #general': (e, template) ->
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
   'change #general': (e, template) ->
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
   'keyup #general': (e, template) ->
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
   'paste #general': (e, template) ->
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
   'cut #general': (e, template) ->
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
   'submit #sidebar-search': (e, template) ->
     e.preventDefault()
-    structuredQueryChange(sidebarIntoQuery template)
+    structuredQueryChange(interpretedIntoQuery template)
     return # Make sure CoffeeScript does not return anything
 
 Template.accessIcon.iconName = ->
@@ -231,10 +255,10 @@ Template.accessIcon.iconName = ->
 
 # We do not want location to be updated for every key press, because this really makes browser history hard to navigate
 # TODO: This might make currentSearchQuery be overriden with old value if it happens that exactly after 500 ms user again presses a key, but location is changed to old value which sets currentSearchQuery and thus input field back to old value
-updateSearchLoction = _.debounce (query) ->
+updateSearchLocation = _.debounce (query) ->
   Meteor.Router.toNew Meteor.Router.searchPath query
 , 500
 
 Deps.autorun ->
   if Session.get 'searchActive'
-    updateSearchLoction Session.get 'currentSearchQuery'
+    updateSearchLocation Session.get 'currentSearchQuery'

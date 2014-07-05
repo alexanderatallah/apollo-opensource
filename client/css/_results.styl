@@ -1,7 +1,10 @@
 @import 'variables.import'
 
 section.index
-  margin-top simple-margin-top + 10px
+  margin-top header-height
+
+  .results
+    padding-top 8px
 
   .results-list
     position relative
@@ -42,6 +45,8 @@ section.index
 ol.item-list
   list-style none
   padding 5px
+  &.small
+    padding-top 0
 
   li.result-item
     position relative
@@ -51,6 +56,10 @@ ol.item-list
     border-radius 2px
     box-shadow 0 0 0 1px box-shadow-border
     transition box-shadow 0.2s
+    &.small
+      padding 8px 20px
+      margin-top 0px
+      background green-accent
 
     .article-thumbnail
       cursor pointer

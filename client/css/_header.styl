@@ -16,7 +16,6 @@ header
     user-select none
 
 .logo
-  width 145px
   float left
 
   a
@@ -24,13 +23,15 @@ header
     text-decoration none
     line-height 45px
     font-size 22px
+    text-transform uppercase
     font-family "Source Sans Pro", sans-serif
     background transparent
     display inline-block
-    padding 0 20px
+    padding-left 10px
+    padding-right 20px
 
   a:hover
-    background white
+    background gray-dark
     color blue-accent
     text-decoration none !important
 
@@ -80,7 +81,7 @@ ul.top-menu
 
   .search-wrapper.search-focused
     width 600px
-    background white
+    background gray-dark
 
     span.label
       display none
@@ -101,7 +102,7 @@ ul.top-menu li a:hover, ul.top-menu .search-wrapper:hover
 
 .no-index-header
   ul.top-menu li a:hover, ul.top-menu .search-wrapper:hover
-    background white
+    background gray-dark
     color blue-accent
 
 ul.top-menu li .accounts-dialog a:hover
@@ -262,22 +263,22 @@ header.logged-in
     background transparent
     text-align center
     font-weight bold
-    color blue-accent
+    color blue
     cursor pointer
 
     a
-      color blue-accent
+      color blue
       padding 0 5px
 
   .menu-item:hover
-      background blue-accent
+      background blue
       color white
       a
         color white
   
   .menu-item a:hover
     color white
-    background blue-accent
+    background blue
 
   .login-link-and-dropdown-list
     cursor pointer
@@ -328,12 +329,12 @@ input.import-file-input
 
 header.index-header
   .search-wrapper
-    size = 213px
+    size = 158px
     pad = 10px
     position fixed
     display block
     height 15px
-    top 60%
+    top 460px
     left 50%
     width size
     margin-left (-1/2)*size - pad

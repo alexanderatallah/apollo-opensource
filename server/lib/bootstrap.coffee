@@ -1,2 +1,2 @@
 Meteor.startup ->
-  Log.info "PeerLibrary started"
+  Log.info "Apollo started"

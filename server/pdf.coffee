@@ -1,8 +1,8 @@
 fs = Npm.require 'fs'
 
-DEBUG = false
+DEBUG = true
 
-bindEnvironemnt = (f) ->
+bindEnvironment = (f) ->
   Meteor.bindEnvironment f, (e) -> throw e
 
 PDF =
@@ -41,10 +41,10 @@ PDF =
         canvasContext: canvasContext
         viewport: viewport
         textLayer:
-          beginLayout: bindEnvironemnt ->
+          beginLayout: bindEnvironment ->
             #Log.debug "beginLayout"
 
-          endLayout: bindEnvironemnt ->
+          endLayout: bindEnvironment ->
             #Log.debug "endLayout"
 
             if DEBUG
@@ -54,7 +54,7 @@ PDF =
 
             pageImageCallback page.pageNumber, canvasElement
 
-          appendText: bindEnvironemnt (geom) ->
+          appendText: bindEnvironment (geom) ->
             # TODO: Verify it still draws correctly on the server
             segment = PDFJS.pdfTextSegment textContent, appendCounter, geom
 

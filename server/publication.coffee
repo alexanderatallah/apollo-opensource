@@ -1,4 +1,8 @@
 crypto = Npm.require 'crypto'
+# Pos =  Npm.require 'pos'
+# Natural = Npm.require 'natural'
+# Tokenizer = new Natural.TreebankWordTokenizer()
+# Tagger = new Pos.Tagger()
 
 NUMBER_OF_VERIFICATION_SAMPLES = 3
 VERIFICATION_SAMPLE_SIZE = 64
@@ -35,6 +39,9 @@ class @Publication extends Publication
           Log.error "Error processing publication: #{ error.stack or error.toString?() or error }"
 
           return [null, null]
+
+      # fields.entities.generator = (fields) ->
+      #   return [null, null] unless fields.fullText
 
       fields
 

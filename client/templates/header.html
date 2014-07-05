@@ -7,7 +7,7 @@
             {{#if development}}
               <a href="{{indexPath}}" title="Data is NOT stored permanently and is reset as needed!">Apollo<span class="banner" title="Data is NOT stored permanently and is reset as needed!">Development instance</span></a>
             {{else}}
-              <a href="{{indexPath}}">Apollo</a>
+              <a href="{{indexPath}}" class="brand"><span class="small-logo"></span> Apollo</a>
             {{/if}}
           </div>
         {{/if}}
@@ -15,7 +15,7 @@
           <li class="search">
             {{> searchInput}}
           </li>
-          {{#if searchActive}}
+          {{#if noIndexHeader}}
             {{> loginButtons}}
             {{> groupsButton}}
             {{> importButton}}
