@@ -37,7 +37,7 @@
 
 Deps.autorun ->
   if !Session.get('searchAdvancedHasBeenToggled')
-    if Session.get('currentSearchQuery').toLowerCase().indexOf(" where ") > -1
+    if Session.get('currentSearchQuery')?.toLowerCase().indexOf(" where ") > -1
       Session.set 'searchAdvancedActive', true
 
 Template.advancedSearch.created = ->
