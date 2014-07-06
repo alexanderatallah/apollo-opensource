@@ -21,7 +21,6 @@ util
 random
 dimsum
 connect
-stylus
 urlify2
 accounts-ui-unstyled
 HTML5-History-API
@@ -48,3 +47,4 @@ related
 kadira
 font-awesome
 directcollection
+stylus

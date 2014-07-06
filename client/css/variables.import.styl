@@ -3,10 +3,13 @@
 /* Colors
 ========= */
 
-blue = #338ed5
-blue-accent = #84c9ff // #2270ab
+blue = #338ed5 // #447597, #338ed5, #3374D5
+blue-dark = darken(blue, 50%)
+blue-darker = darken(blue, 90%)
+blue-light = lighten(blue, 50%) // #84c9ff, #2270ab
+blue-lighter = lighten(blue, 90%) // #E7F3F7
 green = #99ff9b
-green-accent = #e5ffe5
+green-light = #e5ffe5
 white-translucent = rgba(240,240,240,0.6)
 overlay-translucent = rgba(46,46,44,0.5)
 
@@ -66,9 +69,9 @@ border-radius-small = 2px
 
 /* Mixins
 ========= */
-arrow-right(width = 10px, height = 58px)
+arrow-right(width = 10px, height = 58px, color = #444449)
   width: 0
   height: 0
   border-top: (1/2)*height solid transparent
   border-bottom: (1/2)*height solid transparent
-  border-left: width solid #444449
+  border-left: width solid color

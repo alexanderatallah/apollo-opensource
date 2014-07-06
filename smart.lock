@@ -62,7 +62,7 @@
       "stylus": {
         "git": "https://github.com/alexanderatallah/smartstylus.git",
         "branch": "master",
-        "commit": "2788898b8c21ef5153ed484b088eddc0a063451e"
+        "commit": "b6eebfbaa57a2986b0df053a8e9db5503c0855df"
       },
       "router": {
         "git": "https://github.com/peerlibrary/meteor-router.git",
@@ -101,8 +101,8 @@
       },
       "xml2js": {
         "git": "https://github.com/peerlibrary/meteor-xml2js.git",
-        "tag": "v0.4.1-1",
-        "commit": "18aeb92fbbcdf916c66fb87a8617c4b86f376f91"
+        "tag": "v0.4.4-1",
+        "commit": "e437621620bf1821f3388f8949c8d5408f38d1fb"
       },
       "util": {
         "git": "https://github.com/peerlibrary/meteor-util.git",
