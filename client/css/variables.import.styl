@@ -55,7 +55,7 @@ hover-blue = #327cab
 ======== */
 
 header-height = 45px
-filters-height = 83px
+filters-height = 80px
 simple-margin-top = 75px
 
 display-page-loading-width = 400px
@@ -70,8 +70,12 @@ border-radius-small = 2px
 /* Mixins
 ========= */
 arrow-right(width = 10px, height = 58px, color = #444449)
+  content: ""
   width: 0
   height: 0
   border-top: (1/2)*height solid transparent
   border-bottom: (1/2)*height solid transparent
   border-left: width solid color
+  position: absolute
+  right: -1*width
+  top: 0px

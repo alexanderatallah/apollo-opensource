@@ -16,6 +16,7 @@
             {{> searchInput}}
           </li>
           {{#if noIndexHeader}}
+            {{> searchAdvancedDropdown}}
             {{> loginButtons}}
             {{> groupsButton}}
             {{> importButton}}
@@ -60,6 +61,14 @@
 <template name="progressBar">
   {{#if progress}}
     <div class="progress-bar" style="width: {{progress}}%"></div>
+  {{/if}}
+</template>
+
+<template name="searchAdvancedDropdown">
+  {{#if searchFocused}}
+    <li class="search-advanced-button">
+      <a href><i class="{{searchAdvancedToggle}}"></i></a>
+    </li>
   {{/if}}
 </template>
 

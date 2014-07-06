@@ -1,30 +1,31 @@
 @import 'variables.import'
 
 section.filters
-  display none
   width 100%
   background gray-dark
-  height filters-height
+  height 0
   overflow-y hidden
   overflow-x auto
   border-bottom-left-radius border-radius-large
   border-bottom-right-radius border-radius-large
   box-shadow 0 0px 10px rgba(0, 0, 0, 0.7)
+  transition 0.5s
 
-  form#advanced-search
+  &.open
+    height filters-height
+
+  #advanced-search-form
     color white
     display table-row
 
     .filter
+      v-padding = 20px
       color = lighten(blue, 30%)
 
       display: table-cell
-      height: filters-height
-      padding: 15px 20px 15px 30px
+      height: filters-height - v-padding
+      padding: (1/2)*v-padding 15px
       position: relative
-      border-right: 1px solid rgba(0, 0, 0, 0.40)
-      &:last-of-type 
-        border-right: none
 
       // Relatively positioned elements aren't clipped
       // &:first-of-type 
@@ -34,10 +35,6 @@ section.filters
       box-shadow: 10px 0px 45px rgba(0, 0, 0, 0.7)
       background-color: color // #444449
       &::after
-        content: ""
         width = 10px
         height = filters-height
         arrow-right(width, height, color)
-        position: absolute
-        right: -1*width
-        top: 0px

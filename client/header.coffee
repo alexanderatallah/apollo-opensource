@@ -19,6 +19,11 @@ Template.header.events =
 
     return # Make sure CoffeeScript does not return anything
 
+  'mousedown .search-advanced-button': (e, template) ->
+    Session.set 'searchAdvancedActive', !Session.get('searchAdvancedActive')
+
+    return # Make sure CoffeeScript does not return anything
+
   'blur .search-input': (e, template) ->
     Session.set 'searchFocused', false
     generalQueryChange $(template.findAll '.search-input').val()
@@ -78,6 +83,14 @@ Template.header.noIndexHeader = ->
 
 Template.searchInput.searchFocused = ->
   'search-focused' if Session.get 'searchFocused'
+
+Template.searchAdvancedDropdown.searchFocused = Template.searchInput.searchFocused
+
+Template.searchAdvancedDropdown.searchAdvancedToggle = ->
+  if Session.get 'searchAdvancedActive'
+    'fa fa-angle-up'
+  else
+    'fa fa-angle-down'
 
 Template.searchInput.created = ->
   @_searchQueryHandle = null
