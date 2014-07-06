@@ -18,9 +18,6 @@
   Session.set 'currentSearchQuery', newQuery
   Session.set 'currentSearchLimit', INITIAL_SEARCH_LIMIT
 
-  if newQuery.toLowerCase().indexOf("where") > -1
-    Session.set 'searchAdvancedActive', true
-
 @structuredQueryChange = (newQuery) ->
   oldQuery = Session.get 'currentSearchQuery'
   if "#{ oldQuery }" is "#{ newQuery.general }" # Make sure we compare primitive strings
@@ -37,6 +34,11 @@
   # TODO: Add other fields from the sidebar
   Session.set 'currentSearchQuery', newQuery.general
   Session.set 'currentSearchLimit', INITIAL_SEARCH_LIMIT
+
+Deps.autorun ->
+  if !Session.get('searchAdvancedHasBeenToggled')
+    if Session.get('currentSearchQuery').toLowerCase().indexOf(" where ") > -1
+      Session.set 'searchAdvancedActive', true
 
 Template.advancedSearch.created = ->
   @_searchQueryHandle = null

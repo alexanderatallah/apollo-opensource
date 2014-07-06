@@ -20,6 +20,7 @@ Template.header.events =
     return # Make sure CoffeeScript does not return anything
 
   'mousedown .search-advanced-button': (e, template) ->
+    Session.set 'searchAdvancedHasBeenToggled', true
     Session.set 'searchAdvancedActive', !Session.get('searchAdvancedActive')
 
     return # Make sure CoffeeScript does not return anything
