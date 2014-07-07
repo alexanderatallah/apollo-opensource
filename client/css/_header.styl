@@ -5,7 +5,6 @@
 
 header
   .container
-    background gray-dark
     height header-height
     font-size 16px
     font-weight 400
@@ -55,7 +54,7 @@ ul.top-menu
       cursor pointer
 
     span.search-button
-      color white
+      color gray-dark
       border none
       display inline
       position relative
@@ -72,7 +71,7 @@ ul.top-menu
       input
         background transparent
         border 0
-        color white
+        color gray-dark
         font-size 18px
         width 575px
         display inline
@@ -82,7 +81,7 @@ ul.top-menu
 
   .search-wrapper.search-focused
     width 600px
-    // background white
+    background white
 
     span.label
       display none
@@ -102,9 +101,13 @@ ul.top-menu li a:hover, ul.top-menu .search-wrapper:hover
   cursor pointer
 
 .no-index-header
-  ul.top-menu li a:hover, ul.top-menu .search-wrapper:hover
+  ul.top-menu li a:hover
     background blue
     color white
+
+  ul.top-menu .search-wrapper:hover
+    background white
+    color gray-dark
 
 ul.top-menu li .accounts-dialog a:hover
   background transparent
@@ -341,7 +344,6 @@ header.index-header
     margin-left (-1/2)*size - pad
     visibility visible
     background transparent
-    color #fff
     border-width 0 2px 2px 2px
     border-style solid
     border-color rgba(256,256,256,0.8)
@@ -363,6 +365,7 @@ header.index-header
         width 616px
         font-size 24px
         background transparent
+        color blue-light
 
       input::-webkit-input-placeholder
           font-family "Source Sans Pro", sans-serif
@@ -416,8 +419,10 @@ header.no-index-header
     display block
 
   .container
+    background gray-dark
+    border-bottom 1px solid gray
     .progress-bar
-      background #2dc7ff
+      background blue-light
       bottom -2px
       height 2px
       position absolute
