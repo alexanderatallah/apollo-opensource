@@ -4,8 +4,9 @@ section.filters
   width 100%
   background gray
   height 0
-  overflow-y hidden
-  overflow-x auto
+  opacity 0
+  // overflow-y hidden
+  // overflow-x auto
   border-bottom-left-radius border-radius-large
   border-bottom-right-radius border-radius-large
   box-shadow 0 0px 10px rgba(0, 0, 0, 0.7)
@@ -13,6 +14,7 @@ section.filters
 
   &.open
     height filters-height
+    opacity 1
 
   #advanced-search-form
     color white
@@ -28,9 +30,8 @@ section.filters
       position: relative
 
       // Relatively positioned elements aren't clipped
-      // &:first-of-type 
-      //   border-top-left-radius: 5px
-      //   border-bottom-left-radius: 5px
+      &:first-of-type
+        border-bottom-left-radius border-radius-large
 
       box-shadow: 10px 0px 45px rgba(0, 0, 0, 0.7)
       background-color: color // #444449
@@ -38,3 +39,22 @@ section.filters
         width = 10px
         height = filters-height
         arrow-right(width, height, color)
+
+      label
+        display block
+        margin-bottom 10px
+
+      .chzn-drop
+        color #444444
+        min-width 166px
+
+      .chzn-single
+        border-radius border-radius-small
+        height 28px
+        line-height 28px
+
+      .chzn-container-single
+        .chzn-single div
+          top 2px
+
+

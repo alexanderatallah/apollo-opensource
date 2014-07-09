@@ -2,36 +2,28 @@
   <section id="advancedSearch" class="row filters {{isOpen}}">
     <form id="advanced-search-form">
       <div class="filter">
-        <input type="text" id="general" />
+        <label for="filterForFind">Find</label>
+        <select type="text" id="filterForFind" data-placeholder="Select a type">
+          <option selected>anything</option>
+          <option>Entities</option>
+          <option>Documents</option>
+          <option>Users</option>
+        </select>
+      </div>
+      <div class="filter">
+        <label for="filterForContaining">Containing</label>
+        <input type="text" id="filterForContaining" />
       </div>
       <!-- <div class="filter">
         <label for="title">Title contains</label>
         <input type="text" id="title" disabled="disabled" />
       </div> -->
-      <div class="filter">
-        <label for="tags">Tags</label>
-        {{! TODO: For now disabled }}
-        <select type="text" id="tags" data-placeholder="Select tag(s)" multiple="multiple" class="chzn" disabled="disabled">
-          <option value=""></option>
-          <option>Computer Science</option>
-          <option>Biology</option>
-          <option>Physics</option>
-          <option>Chemistry</option>
-          <option>Philosophy</option>
-          <option>Mathematics</option>
-          <option>Political Science</option>
-          <option>Big Data</option>
-          <option>HTML5 Nanotechnology</option>
-          <option>Bitcoin Casino</option>
-          <option>Robot Circus</option>
-        </select>
-      </div>
-      <div class="filter">
+      <!-- <div class="filter">
         <label for="publication-date" class="label-slider">Publication year</label>
-        <input type="text" id="publication-date" disabled="disabled" />
+        <input type="text" id="publication-date" />
         <div class="clearfix"></div>
         <div id="date-range"></div>
-      </div>
+      </div> -->
     </form>
   </section>
 </template>

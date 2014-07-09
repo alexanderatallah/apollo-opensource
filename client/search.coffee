@@ -18,26 +18,26 @@
   Session.set 'currentSearchQuery', newQuery
   Session.set 'currentSearchLimit', INITIAL_SEARCH_LIMIT
 
-@structuredQueryChange = (newQuery) ->
+@structuredQueryChange = (newQuerySerialized) ->
   oldQuery = Session.get 'currentSearchQuery'
-  if "#{ oldQuery }" is "#{ newQuery.general }" # Make sure we compare primitive strings
+  newQuery = serializedToQuery newQuerySerialized
+  if "#{ oldQuery }" is "#{ newQuery }" # Make sure we compare primitive strings
     return
 
   # We increase the counter to signal that structured query invoked the change
-  structuredQueryChangeLock++
-  Deps.afterFlush ->
-    Meteor.setTimeout ->
-      structuredQueryChangeLock--
-      assert structuredQueryChangeLock >= 0
-    , 100 # ms after the flush we unlock
+  # structuredQueryChangeLock++
+  # Deps.afterFlush ->
+  #   Meteor.setTimeout ->
+  #     structuredQueryChangeLock--
+  #     assert structuredQueryChangeLock >= 0
+  #   , 100 # ms after the flush we unlock
 
-  # TODO: Add other fields from the sidebar
-  Session.set 'currentSearchQuery', newQuery.general
+  Session.set 'currentSearchQuery', newQuery
   Session.set 'currentSearchLimit', INITIAL_SEARCH_LIMIT
 
 Deps.autorun ->
   if !Session.get('searchAdvancedHasBeenToggled')
-    if Session.get('currentSearchQuery')?.toLowerCase().indexOf(" where ") > -1
+    if Session.get('currentSearchQuery')?.indexOf("find ") == 0
       Session.set 'searchAdvancedActive', true
 
 Template.advancedSearch.created = ->
@@ -47,8 +47,11 @@ Template.advancedSearch.created = ->
 Template.advancedSearch.rendered = ->
   @_searchQueryHandle?.stop()
   @_searchQueryHandle = Deps.autorun =>
-    # Sync input field unless change happened because of this input field itself
-    $(@findAll '#general').val(Session.get 'currentSearchQuery') unless structuredQueryChangeLock > 0
+    # Sync query unless change happened because of this input field itself
+    # unless structuredQueryChangeLock > 0
+    serialized = queryToSerialized(Session.get 'currentSearchQuery')
+    $(@findAll '#filterForFind').val(serialized.find)
+    $(@findAll '#filterForContaining').val(serialized.containing) 
 
   @_dateRangeHandle?.stop()
   @_dateRangeHandle = Deps.autorun =>
@@ -88,7 +91,7 @@ Template.advancedSearch.rendered = ->
     $publicationDate.val($slider.slider('values', 0) + ' - ' + $slider.slider('values', 1))
 
   $(@findAll '.chzn').chosen
-    no_results_text: "No tag match"
+    no_results_text: "No match"
 
 Template.advancedSearch.destroyed = ->
   @_searchQueryHandle?.stop()
@@ -99,32 +102,55 @@ Template.advancedSearch.destroyed = ->
 Template.advancedSearch.isOpen = ->
   'open' if Session.get 'searchAdvancedActive'
 
-interpretedIntoQuery = (template) ->
-  # TODO: Add other fields as well
-  general: $(template.findAll '#general').val()
+serializeSearchForm = (template) ->
+  find: $(template.findAll '#filterForFind').val()
+  containing: $(template.findAll '#filterForContaining').val()
+
+serializedToQuery = (s) ->
+  "find " + s.find + " containing \"" + s.containing + "\""
+
+queryToSerialized = (q) ->
+  tokens = q.split(' ')
+  if tokens[0] != "find"
+    query = q
+  else
+    if tokens[1] == "containing"
+      query = tokens.slice(2).join(' ')
+    else if tokens[2] == "containing"
+      type = tokens[1]
+      query = tokens.slice(3).join(' ')
+
+    query = query?.replace /"/g, ''
+    
+  find: type or "anything"
+  containing: query
 
 Template.advancedSearch.events =
-  'blur #general': (e, template) ->
-    structuredQueryChange(interpretedIntoQuery template)
+  'blur #filterForContaining': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
 
-  'change #general': (e, template) ->
-    structuredQueryChange(interpretedIntoQuery template)
+  'change #filterForContaining': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
 
-  'keyup #general': (e, template) ->
-    structuredQueryChange(interpretedIntoQuery template)
+  'keyup #filterForContaining': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
 
-  'paste #general': (e, template) ->
-    structuredQueryChange(interpretedIntoQuery template)
+  'paste #filterForContaining': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
 
-  'cut #general': (e, template) ->
-    structuredQueryChange(interpretedIntoQuery template)
+  'cut #filterForContaining': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
 
   'submit #sidebar-search': (e, template) ->
     e.preventDefault()
-    structuredQueryChange(interpretedIntoQuery template)
+    structuredQueryChange(serializeSearchForm template)
+    return # Make sure CoffeeScript does not return anything
+
+  'change #filterForFind': (e, template) ->
+    structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
