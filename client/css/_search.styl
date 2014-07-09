@@ -11,6 +11,7 @@ section.filters
   border-bottom-right-radius border-radius-large
   box-shadow 0 0px 10px rgba(0, 0, 0, 0.7)
   transition 0.5s
+  position relative
 
   &.open
     height filters-height
@@ -19,6 +20,16 @@ section.filters
   #advanced-search-form
     color white
     display table-row
+
+    .add-filter
+      display table-cell
+      font-size 16px
+      opacity 0.5
+      cursor pointer
+      i
+        position: relative
+        top: 22px
+        left: 20px
 
     .filter
       v-padding = 20px
