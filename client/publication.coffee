@@ -129,7 +129,7 @@ class @Publication extends Publication
         $selectionLayer = $('<div/>').addClass('text-layer').addClass('selection-layer').forwardMouseEvents()
         $highlightsControl = $('<div/>').addClass('highlights-control').append(
           $('<div/>').addClass('meta-menu').append(
-            $('<i/>').addClass('icon-menu'),
+            $('<i/>').addClass('fa fa-cog'),
             $('<div/>').addClass('meta-content'),
           )
         )
@@ -397,7 +397,7 @@ class @Publication extends Publication
             $highlightsLayer = $('<div/>').addClass('highlights-layer')
             $highlightsControl = $('<div/>').addClass('highlights-control').append(
               $('<div/>').addClass('meta-menu').append(
-                $('<i/>').addClass('icon-menu'),
+                $('<i/>').addClass('fa fa-cog'),
                 $('<div/>').addClass('meta-content'),
               )
             )

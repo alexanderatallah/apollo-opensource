@@ -52,7 +52,7 @@ meta-menu-icon-font-size = 20px
   a
     color white
 
-  i.icon-menu
+  i.fa-cog
     font-size meta-menu-icon-font-size
     color white
 
@@ -262,7 +262,7 @@ small-meta-menu-icon-font-size = 13px
           padding small-meta-menu-padding
           z-index 200
 
-          i.icon-menu
+          i.fa-cog
             font-size small-meta-menu-icon-font-size
 
           .meta-content
@@ -692,7 +692,7 @@ annotations-control-height = 30px
       top 0
       left 0
 
-      i.icon-menu
+      i.fa-cog
         font-size small-meta-menu-icon-font-size
 
       .meta-content
@@ -865,3 +865,9 @@ footer.publication-displayed
      then in code we update it to real width based on the PDF */
   // width display-page-loading-width
   // margin-left viewer-left
+
+/* Fix for new meta menu icon */
+.meta-menu i.fa-cog
+  position relative
+  top 1px
+  left 4px
