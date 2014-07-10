@@ -14,6 +14,15 @@
         <label for="filterForContaining">Containing</label>
         <input type="text" id="filterForContaining" />
       </div>
+      <div class="filter new-filter {{#if newFilterInProgress}}open{{/if}}">
+        <select type="text" id="filterChooser" data-placeholder="Select a filter">
+          <option selected>Or</option>
+          <option>Sort</option>
+          <option>From date</option>
+          <option>To date</option>
+        </select>
+        <input type="text" id="filterChooserInput" />
+      </div>
       <div class="add-filter">
         <i class="fa fa-plus-square"></i>
       </div>

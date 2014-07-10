@@ -102,6 +102,9 @@ Template.advancedSearch.destroyed = ->
 Template.advancedSearch.isOpen = ->
   'open' if Session.get 'searchAdvancedActive'
 
+# Template.advancedSearch.newFilterInProgress = ->
+#   Session.get 'newFilterInProgress'
+
 serializeSearchForm = (template) ->
   find: $(template.findAll '#filterForFind').val()
   containing: $(template.findAll '#filterForContaining').val()
@@ -135,3 +138,6 @@ Template.advancedSearch.events =
   'change #filterForFind': (e, template) ->
     structuredQueryChange(serializeSearchForm template)
     return # Make sure CoffeeScript does not return anything
+
+  'click .add-filter': (e, template) ->
+    $(template.find '.new-filter').toggleClass('open')

@@ -5,8 +5,8 @@ section.filters
   background gray
   height 0
   opacity 0
-  // overflow-y hidden
-  // overflow-x auto
+  overflow-y hidden
+  overflow-x auto
   border-bottom-left-radius border-radius-large
   border-bottom-right-radius border-radius-large
   box-shadow 0 0px 10px rgba(0, 0, 0, 0.7)
@@ -39,6 +39,7 @@ section.filters
       height: filters-height - v-padding
       padding: (1/2)*v-padding 15px
       position: relative
+      transition 0.5s
 
       // Relatively positioned elements aren't clipped
       &:first-of-type
@@ -51,9 +52,28 @@ section.filters
         height = filters-height
         arrow-right(width, height, color)
 
-      label
+      &.new-filter
         display block
+        width 0
+        padding 0
+        opacity 0
+        visibility hidden
+        &.open
+          opacity 1
+          padding: (1/2)*v-padding 15px
+          visibility visible
+          width 144px
+
+        // Must be an ID, or animation won't work (form problem?)
+        #filterChooser
+          background transparent
+          color white
+
+      label
         margin-bottom 10px
+
+      label, select, input
+        display block
 
       .chzn-drop
         color #444444
