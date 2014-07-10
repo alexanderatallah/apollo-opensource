@@ -51,6 +51,12 @@ Template.results.rendered = ->
 Template.results.destroyed = ->
   $(window).off '.results'
 
+Template.results.events =
+  'mouseenter .result-item': (e, template) ->
+    $(template.findAll '.result-item.hover').removeClass('hover')
+    $(e.target).addClass('hover')
+    Session.set 'currentFocusedResult', $(e.target).find('.title a').text()
+
 increaseSearchLimit = (pageSize) ->
   if searchLimitIncreasing
     return
@@ -87,6 +93,9 @@ Template.resultsCount.persons = ->
 
 Template.results.noResults = ->
   Session.get('currentSearchQueryReady') and not currentSearchQueryCount()
+
+Template.sidebar.entity = ->
+  Session.get('currentFocusedResult')
 
 Template.sidebar.documents = ->
   # TODO: not Session.get('currentSearchLimit') or ...

@@ -62,16 +62,17 @@
 <template name="sidebar">
   <div class="col4 push12 sidebar sidebar-search">
     {{#if entity}}
-      {{#with entity}}
+      {{! with entity}}
         <h2>Entities</h2>
-        <div class="row">
+        <p>Entities for "{{entity}}" will show up here.</p>
+        <!-- <div class="row">
           <div class="results-list">
             <ol class="item-list">
-              {{> entitySearchResult}}
+              {{! entitySearchResult}}
             </ol>
           </div>
-        </div>
-      {{/with}}
+        </div> -->
+      {{! with}}
     {{else}}
       {{> noDetail}}
     {{/if}}
