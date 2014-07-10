@@ -88,7 +88,7 @@ Template.resultsCount.persons = ->
 Template.results.noResults = ->
   Session.get('currentSearchQueryReady') and not currentSearchQueryCount()
 
-Template.resultsEntities.entities = ->
+Template.sidebar.documents = ->
   # TODO: not Session.get('currentSearchLimit') or ...
   if not Session.get('currentSearchQuery')
     return
@@ -102,13 +102,9 @@ Template.resultsEntities.entities = ->
   # Session.set 'currentSearchQueryCountEntities', searchResult.countHighlights
 
   # TODO: Alex, use real fulltext search
-  Highlight.documents.find
-    quote: new RegExp Session.get('currentSearchQuery'), 'i'
+  # Highlight.documents.find
+  #   quote: new RegExp Session.get('currentSearchQuery'), 'i'
     # limit: Session.get 'currentSearchLimit'
-
-Template.resultsEntities.noResults = Template.results.noResults
-  # ->
-  # Session.get('currentSearchQueryReady') and Session.get('currentSearchQueryCountEntities') == 0
 
 Template.resultsLoad.loading = ->
   Session.get('currentSearchQueryLoading')

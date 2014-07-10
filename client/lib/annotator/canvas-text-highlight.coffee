@@ -69,10 +69,10 @@ class CanvasTextHighlight extends Annotator.Highlight
 
     context.save()
 
-    context.lineWidth = 1
+    context.lineWidth = 8
     # TODO: Colors do not really look the same if they are same as style in variables.styl, why?
-    context.strokeStyle = 'rgba(14,41,57,0.32)'
-    context.shadowColor = 'rgba(14,41,57,1.0)'
+    context.strokeStyle = 'rgba(51,109,241,0.32)'
+    context.shadowColor = 'rgba(51,109,241,1.0)'
     context.shadowBlur = 5
     context.shadowOffsetX = 0
     context.shadowOffsetY = 2

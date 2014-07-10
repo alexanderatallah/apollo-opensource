@@ -225,10 +225,12 @@ small-meta-menu-icon-font-size = 13px
       .highlights-layer
         .highlights-layer-segment
           position absolute
-          background-color highlight-color
+          border 2px solid rgba(green, 0.6)
+          // background-color highlight-color
 
         .highlights-layer-highlight.selected .highlights-layer-segment
-          background-color transparent
+          border 2px solid rgba(blue, 0.6)
+          // background-color transparent
 
       .text-layer
         /* Should not have any margin or padding, because otherwise
@@ -712,7 +714,7 @@ annotations-control-height = 30px
   .annotation:hover .annotation-wrapper, .annotation.selected .annotation-wrapper, .annotation.hovered .annotation-wrapper
       /* Style used in pdf-text-highlight.coffee as well, keep it in sync */
       /* TODO: Better show which annotations are selected, which annotations are hovered, and which annotations are highlighted to show which are linked to a highlight user is hovering over */
-      box-shadow 0 0 0 1px box-shadow-border, 0 2px 30px green // 0 0 0 1px box-shadow-border, 0 2px 5px box-shadow-shadow
+      box-shadow 0 0 0 1px box-shadow-border, 0 2px 30px blue // 0 0 0 1px box-shadow-border, 0 2px 5px box-shadow-shadow
 
   /* We use only 1px here to still have shadow border visible, but not 5px
      top margin which makes visible lower than the crop top line when
