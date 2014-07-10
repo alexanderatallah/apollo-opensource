@@ -1,0 +1,25 @@
+<template name="entityDetail">
+  <div id="entityDetail">
+    {{#if loading}}
+      <div class="simple loading">
+        <h2>Loading</h2>
+      </div>
+    {{else}}
+
+    {{/if}}
+  </div>
+</template>
+
+<template name="entityDocs">
+  <ul class="entity-docs-list">
+    {{#each entityDocs}}
+      {{> entityDocsItem}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="entityDocsItem">
+  <li class="entity-doc">
+    {{_id}}
+  </li>
+</template>

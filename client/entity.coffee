@@ -1,0 +1,3 @@
+Template.entityDetail.loading = ->
+  true
+
