@@ -19,13 +19,19 @@
         {{/with}}
         {{> publicationScroller}}
         {{> publicationDisplay}}
-        {{> entityDetail}}
-        {{> entityDocs}}
-        {{> annotationsControl}}
-        {{> publicationAnnotations}}
+        {{> helper}}
       </div>
     {{/if}}
   {{/if}}
+</template>
+
+<template name="helper">
+  <div class="helper">
+    {{> entityDetail}}
+    {{> entityDocs}}
+    {{> annotationsControl}}
+    {{> publicationAnnotations}}
+  </div>
 </template>
 
 <template name="publicationMetaMenu">

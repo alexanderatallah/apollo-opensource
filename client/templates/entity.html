@@ -1,11 +1,21 @@
 <template name="entityDetail">
   <div id="entityDetail">
     {{#if loading}}
-      <div class="simple loading">
-        <h2>Loading</h2>
-      </div>
+      <h2>Loading <i class="fa fa-refresh fa-spin"></i></h2>
     {{else}}
+      {{#if notFound}}
+        <h2>No entity for this selection</h2>
+      {{else}}
+        {{#if entity}}
+          {{#with entity}}
 
+            <h2>{{name}}</h2>
+
+          {{/with}}
+        {{else}}
+          <h2>Select an annotation</h2>
+        {{/if}}
+      {{/if}}
     {{/if}}
   </div>
 </template>

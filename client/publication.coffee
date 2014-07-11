@@ -106,6 +106,7 @@ class @Publication extends Publication
     @_pagesDone = 0
     @_pages = []
     @_highlighter = new Highlighter @_$displayWrapper, true
+    @_entityHelper = new EntityHelper()
 
     PDFJS.getDocument(@url(), null, null, @_progressCallback).then (@_pdf) =>
       # Maybe this instance has been destroyed in meantime
@@ -291,6 +292,10 @@ class @Publication extends Publication
       @_pdf.destroy()
       @_pdf = null
 
+    # Entity Helper
+    @_entityHelper.destroy() if @_entityHelper
+    @_entityHelper = null
+
     # To make sure it is cleaned up
     @_highlighter.destroy() if @_highlighter
     @_highlighter = null
@@ -421,6 +426,7 @@ class @Publication extends Publication
 
             # TODO: Update sizes as display page changes size (if user changes font size, for example)
             # TODO: Allow modifying size of display page (update then all sizes as necessary)
+            # TODO: Alex, entityHelper
 
             @_highlighter = new Highlighter @_$displayWrapper, false
             @_highlighter.setNumPages 0
@@ -433,6 +439,10 @@ class @Publication extends Publication
     fields:
       cachedId: 1
       mediaType: 1
+
+Deps.autorun ->
+  if Session.get 'currentPublicationId'
+    Meteor.subscribe 'entities'
 
 Deps.autorun ->
   if Session.get 'currentPublicationId'
@@ -840,18 +850,18 @@ Template.highlightsControl.events
     return # Make sure CoffeeScript does not return anything
 
 resizeAnnotationsWidth = ($annotationsList) ->
-  padding = parseInt($('.annotations-control').css('right'))
+  padding = parseInt($('.helper').css('right'))
   displayWrapper = $('.display-wrapper')
   left = displayWrapper.offset().left + displayWrapper.outerWidth() + padding
-  $('.annotations-control').css
+  $('.helper').css
     left: left
 
   # To not crop the shadow of annotations we move the left edge
   # for 5px to the left and then add 5px (in fact 6px, so that
   # it looks better with our 1px shadow border) left margin to each
   # annotation. Same value is used in the _viewer.styl as well.
-  $('.annotations-list').add($annotationsList).css
-    left: left - 5
+  # $('.annotations-list').add($annotationsList).css
+  #   left: left - 5
 
 Template.annotationsControl.rendered = ->
   resizeAnnotationsWidth()

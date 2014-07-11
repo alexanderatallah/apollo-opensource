@@ -1,7 +1,6 @@
-class @Highlight extends AccessDocument
+class @Entity extends AccessDocument
   # createdAt: timestamp when document was created
   # updatedAt: timestamp of this version
-  # lastActivity: time of the last highlight activity (for now same as updatedAt)
   # author:
   #   _id: author's person id
   #   slug: author's person id
@@ -10,42 +9,34 @@ class @Highlight extends AccessDocument
   #   gravatarHash
   #   user
   #     username
-  # publication:
-  #   _id: publication's id
-  # quote: quote made by this highlight
-  # target: open annotation standard compatible target information
-  # referencingAnnotations: list of (reverse field from Annotation.references.highlights)
-  #   _id: annotation id
-  # referencingEntities: list of (reverse field from Entity.highlights)
-  #   _id: entity id
+  # name: unique name of this entity
+  # highlights: list of highlights
+  #   _id: highlight id
+  # description: string description
 
   @Meta
-    name: 'Highlight'
+    name: 'Entity'
     fields: =>
       author: @ReferenceField Person, ['slug', 'givenName', 'familyName', 'gravatarHash', 'user.username']
-      publication: @ReferenceField Publication
+      highlights: [@ReferenceField Highlight, ['quote', 'publication._id'], true, 'referencingEntities']
     triggers: =>
       updatedAt: UpdatedAtTrigger ['author._id', 'publication._id', 'quote', 'target']
-      personLastActivity: RelatedLastActivityTrigger Person, ['author._id'], (doc, oldDoc) -> doc.author?._id
-      publicationLastActivity: RelatedLastActivityTrigger Publication, ['publication._id'], (doc, oldDoc) -> doc.publication?._id
 
   hasReadAccess: (person) =>
-    throw new Error "Not needed, documents are public"
+    throw new Error "Not needed, entities are public for now"
 
   @requireReadAccessSelector: (person, selector) ->
-    throw new Error "Not needed, documents are public"
+    throw new Error "Not needed, entities are public for now"
 
   @readAccessPersonFields: ->
-    throw new Error "Not needed, documents are public"
+    throw new Error "Not needed, entities are public for now"
 
   @readAccessSelfFields: ->
-    throw new Error "Not needed, documents are public"
+    throw new Error "Not needed, entities are public for now"
 
   _hasMaintainerAccess: (person) =>
     # User has to be logged in
     return unless person?._id
-
-    # TODO: Implement karma points
 
     return true if @author._id is person._id
 

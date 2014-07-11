@@ -327,23 +327,36 @@ small-meta-menu-icon-font-size = 13px
   .image-segment
     background-color rgba(240,110,0,0.2)
 
+/* Helper
+============== */
+helper-left = viewer-left + display-page-loading-width + meta-menu-left
+helper-right = meta-menu-left
+
+.helper
+  position fixed
+  top meta-menu-top
+  bottom 0
+  left helper-left
+  right helper-right
+  z-index 90
+
 /* Annotations
 ============== */
 
 /* Initially we set it based on display-page-loading width and
    then in code we update it to real width based on the PDF */
-annotations-left = viewer-left + display-page-loading-width + meta-menu-left
-annotations-right = meta-menu-left
+// annotations-left = viewer-left + display-page-loading-width + meta-menu-left
+// annotations-right = meta-menu-left
 annotations-control-height = 30px
 
 .annotations-control
   background #cececf
   border-radius 2px
   height annotations-control-height
-  position fixed
-  left annotations-left
-  right annotations-right
-  top meta-menu-top
+  position relative
+  // left annotations-left
+  // right annotations-right
+  // top meta-menu-top
   z-index 200
 
   input
@@ -514,20 +527,20 @@ annotations-control-height = 30px
   margin 0
   padding 0
   overflow auto
-  position fixed
+  position relative
   z-index 90
   /* To not crop the shadow of annotations we move the left edge
      for 5px to the left and then add 5px (in fact 6px, so that
      it looks better with our 1px shadow border) left margin to
      each annotation. Same value is used in the publication.coffee
      as well. */
-  left annotations-left - 5px
+  // left -5px
   /* To not have scroll bar overlapping the content we move the right
      edge for 10px to the right and then add 10px right margin to each
      annotation */
-  right annotations-right - 10px
-  top header-height + 15px + annotations-control-height
-  bottom 0
+  // right -10px
+  // top header-height + 15px + annotations-control-height
+  // bottom 0
 
   .annotation
     position relative
